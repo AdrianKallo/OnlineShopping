@@ -16,9 +16,9 @@ const server = http.createServer(function(request, response) {
             const post = qs.parse(body)
             console.log(post);
             const result = calculatePrice.calculateProductPrice(Number(post.customerAge), String(post.productType), parseBool(post.hasReturns), parseBool(post.isLoyaltyMember))
-            console.log(result);
+            console.log(Math.round(result * 100) / 100);
             response.writeHead(200, {'Content-Type': 'text/html'})
-            response.end('Result: ' + result)
+            response.end('Result: ' + (Math.round(result * 100) / 100))
         })
     } else {
         var html = `
